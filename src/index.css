@@ -53,10 +53,12 @@
     --gradient-hero: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--deep-space)) 50%, hsl(var(--primary)) 100%);
     
     /* Shadows & Glows */
-    --shadow-neon: 0 0 30px hsl(var(--neon-cyan) / 0.3);
-    --shadow-deep: 0 20px 40px -10px hsl(var(--background) / 0.5);
-    --glow-primary: 0 0 50px hsl(var(--primary) / 0.4);
-    --glow-accent: 0 0 40px hsl(var(--accent) / 0.3);
+    --shadow-neon: 0 0 30px hsl(var(--neon-cyan) / 0.4), 0 0 60px hsl(var(--neon-cyan) / 0.15), 0 10px 40px hsl(var(--neon-cyan) / 0.1);
+    --shadow-deep: 0 25px 50px -12px hsl(0 0% 0% / 0.5), 0 0 0 1px hsl(var(--border) / 0.1);
+    --glow-primary: 0 0 40px hsl(var(--primary) / 0.4), 0 0 80px hsl(var(--primary) / 0.2);
+    --glow-accent: 0 0 40px hsl(var(--accent) / 0.5), 0 0 80px hsl(var(--accent) / 0.25);
+    --shadow-card: 0 8px 32px hsl(0 0% 0% / 0.12), 0 0 0 1px hsl(var(--border) / 0.08);
+    --shadow-card-hover: 0 16px 64px hsl(0 0% 0% / 0.16), 0 0 0 1px hsl(var(--accent) / 0.2);
 
     /* Typography */
     --font-display: 'Orbitron', monospace;
@@ -145,15 +147,24 @@
   }
 
   .card-neon {
-    @apply bg-gradient-to-br from-card/80 to-background/40 backdrop-blur-md;
-    @apply border border-accent/20 rounded-2xl p-8;
-    @apply hover:border-accent/40 hover:shadow-lg hover:shadow-accent/20;
-    @apply transition-all duration-500 hover:-translate-y-2;
+    @apply bg-card/90 backdrop-blur-md border border-border/50 rounded-3xl p-8 shadow-card hover:shadow-card-hover hover:border-accent/40 transition-all duration-700 hover:-translate-y-2;
   }
 
   /* Text Effects */
   .text-neon {
     @apply text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-neon-cyan via-accent to-neon-purple bg-clip-text text-transparent;
+  }
+
+  .btn-glow {
+    @apply shadow-glow-primary hover:shadow-glow-accent transition-all duration-500;
+  }
+
+  .section-spacing {
+    @apply py-32 md:py-40;
   }
 
   .text-glow {

@@ -16,9 +16,9 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         // Custom Futuristic Variants
-        neon: "bg-gradient-to-r from-neon-cyan to-neon-purple text-black font-bold hover:shadow-lg hover:shadow-neon-cyan/25 hover:scale-105 active:scale-95 transition-all duration-300",
-        "ghost-neon": "border-2 border-neon-cyan text-neon-cyan bg-transparent font-bold hover:bg-neon-cyan hover:text-black hover:shadow-lg hover:shadow-neon-cyan/25 hover:scale-105 transition-all duration-300",
-        "primary-glow": "bg-gradient-to-r from-electric-blue to-primary text-primary-foreground font-bold hover:shadow-lg hover:shadow-primary/30 hover:scale-105 active:scale-95 transition-all duration-300",
+        neon: "bg-gradient-to-r from-neon-cyan to-neon-purple text-black font-bold hover:shadow-glow-accent hover:scale-110 active:scale-95 transition-all duration-500 relative overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700",
+        "ghost-neon": "border-2 border-neon-cyan text-neon-cyan bg-transparent font-bold hover:bg-neon-cyan/10 hover:shadow-neon hover:scale-110 hover:border-neon-cyan/80 transition-all duration-500 backdrop-blur-sm",
+        "primary-glow": "bg-gradient-to-r from-electric-blue to-primary text-primary-foreground font-bold hover:shadow-glow-primary hover:scale-110 active:scale-95 transition-all duration-500 relative overflow-hidden",
       },
       size: {
         default: "h-10 px-4 py-2",

@@ -59,9 +59,9 @@ const Index = () => {
               </button>
               <a href="#vision" className="text-foreground/80 hover:text-accent transition-colors">Vision</a>
             </div>
-            <Button className="neon">
+            <Button variant="neon" className="group">
               Get Started
-              <ArrowRight className="ml-2 h-4 w-4" />
+              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>
         </div>
@@ -81,8 +81,8 @@ const Index = () => {
         <div className="absolute inset-0 bg-gradient-hero opacity-60" />
         <div className="container mx-auto px-6 text-center relative z-10">
           <div className="animate-fade-in">
-            <h1 className="font-display text-5xl md:text-7xl font-black mb-6 leading-tight">
-              <span className="text-neon">Bridging Core Engineering</span>
+            <h1 className="font-display text-5xl md:text-8xl font-black mb-8 leading-tight">
+              <span className="text-gradient animate-glow-pulse">Bridging Core Engineering</span>
               <br />
               <span className="text-foreground">with Global</span>
               <br />
@@ -92,12 +92,13 @@ const Index = () => {
               Empowering non-tech students from Mechanical, Civil, Electrical, ECE, and Polytechnic fields 
               to connect with industries, institutions, and global employment opportunities.
             </p>
-            <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
-              <Button variant="neon" size="xl" className="animate-pulse-glow">
+            <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
+              <Button variant="neon" size="xl" className="btn-glow group">
                 Join the Future
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-2 transition-transform" />
               </Button>
-              <Button variant="ghost-neon" size="xl">
+              <Button variant="ghost-neon" size="xl" className="group">
+                <Zap className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform" />
                 Explore Platform
               </Button>
             </div>
@@ -105,13 +106,17 @@ const Index = () => {
         </div>
         
         {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <ChevronDown className="h-8 w-8 text-accent" />
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce-subtle cursor-pointer hover:scale-125 transition-transform" 
+             onClick={() => scrollToSection(featuresRef)}>
+          <div className="p-3 rounded-full border border-accent/30 backdrop-blur-sm hover:border-accent/60 transition-colors">
+            <ChevronDown className="h-6 w-6 text-accent" />
+          </div>
         </div>
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-24 bg-card/20">
+      <section id="about" className="section-spacing bg-gradient-to-b from-card/20 to-background/50 relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid-pattern opacity-5" />
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center animate-on-scroll">
             <h2 className="font-display text-4xl md:text-5xl font-bold mb-8 text-neon">
@@ -133,7 +138,7 @@ const Index = () => {
       </section>
 
       {/* Features Section */}
-      <section ref={featuresRef} className="py-24 bg-background">
+      <section ref={featuresRef} className="section-spacing bg-gradient-to-b from-background to-card/30 relative">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16 animate-on-scroll">
             <h2 className="font-display text-4xl md:text-5xl font-bold mb-6 text-neon">
@@ -173,16 +178,18 @@ const Index = () => {
             ].map((feature, index) => (
               <div 
                 key={index}
-                className="card-neon animate-on-scroll group hover:scale-105 transition-all duration-500"
-                style={{ animationDelay: `${index * 0.2}s` }}
+                className="card-neon animate-on-scroll group relative overflow-hidden"
+                style={{ animationDelay: `${index * 0.15}s` }}
               >
-                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                  <feature.icon className="h-8 w-8 text-white" />
+                <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <div className={`relative w-20 h-20 rounded-3xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center mb-8 group-hover:scale-125 group-hover:rotate-6 transition-all duration-700 shadow-lg shadow-current/25`}>
+                  <feature.icon className="h-10 w-10 text-white relative z-10" />
+                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
-                <h3 className="font-display text-xl font-bold mb-4 text-foreground group-hover:text-accent transition-colors">
+                <h3 className="font-display text-2xl font-bold mb-6 text-foreground group-hover:text-gradient transition-all duration-500 relative z-10">
                   {feature.title}
                 </h3>
-                <p className="text-foreground/70 leading-relaxed">
+                <p className="text-foreground/70 leading-relaxed text-lg group-hover:text-foreground/90 transition-colors duration-300 relative z-10">
                   {feature.description}
                 </p>
               </div>
@@ -192,7 +199,9 @@ const Index = () => {
       </section>
 
       {/* Vision Section */}
-      <section id="vision" className="py-24 bg-gradient-to-br from-card/30 to-background/50">
+      <section id="vision" className="section-spacing bg-gradient-to-br from-card/40 to-background/20 relative overflow-hidden">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="animate-on-scroll">
@@ -211,16 +220,18 @@ const Index = () => {
                 but leads it.
               </p>
               <div className="flex gap-4">
-                <Button variant="primary-glow" size="lg">
+                <Button variant="primary-glow" size="lg" className="group">
                   Be Part of the Vision
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </div>
             </div>
-            <div className="animate-on-scroll animate-float">
+            <div className="animate-on-scroll animate-float relative group">
+              <div className="absolute -inset-4 bg-gradient-to-r from-accent/20 to-primary/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
               <img 
                 src={visionIllustration} 
                 alt="Future of Engineering" 
-                className="w-full h-auto rounded-2xl shadow-2xl hover:shadow-glow-accent transition-all duration-500"
+                className="relative w-full h-auto rounded-3xl shadow-2xl hover:shadow-glow-accent transition-all duration-700 group-hover:scale-105"
               />
             </div>
           </div>
@@ -228,7 +239,10 @@ const Index = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-24 bg-gradient-neon relative overflow-hidden">
+      <section className="section-spacing bg-gradient-neon relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20" />
+        <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-neon-cyan to-transparent" />
+        <div className="absolute bottom-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-neon-purple to-transparent" />
         <div className="absolute inset-0 bg-background/90" />
         <div className="container mx-auto px-6 text-center relative z-10">
           <div className="animate-on-scroll">
@@ -238,12 +252,13 @@ const Index = () => {
             <p className="text-xl md:text-2xl text-foreground/80 mb-10 max-w-3xl mx-auto">
               Don't just witness the transformation of engineering – be the driving force behind it.
             </p>
-            <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
-              <Button variant="neon" size="xl" className="animate-pulse-glow">
+            <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
+              <Button variant="neon" size="xl" className="btn-glow animate-glow-pulse group">
                 Get Started Today
-                <ArrowRight className="ml-3 h-6 w-6" />
+                <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-2 transition-transform" />
               </Button>
-              <Button variant="ghost-neon" size="xl">
+              <Button variant="ghost-neon" size="xl" className="group">
+                <BookOpen className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform" />
                 Learn More
               </Button>
             </div>
