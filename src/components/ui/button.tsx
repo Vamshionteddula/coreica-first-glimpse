@@ -15,11 +15,16 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        // Custom Futuristic Variants
+        neon: "bg-gradient-to-r from-neon-cyan to-neon-purple text-black font-bold hover:shadow-lg hover:shadow-neon-cyan/25 hover:scale-105 active:scale-95 transition-all duration-300",
+        "ghost-neon": "border-2 border-neon-cyan text-neon-cyan bg-transparent font-bold hover:bg-neon-cyan hover:text-black hover:shadow-lg hover:shadow-neon-cyan/25 hover:scale-105 transition-all duration-300",
+        "primary-glow": "bg-gradient-to-r from-electric-blue to-primary text-primary-foreground font-bold hover:shadow-lg hover:shadow-primary/30 hover:scale-105 active:scale-95 transition-all duration-300",
       },
       size: {
         default: "h-10 px-4 py-2",
         sm: "h-9 rounded-md px-3",
         lg: "h-11 rounded-md px-8",
+        xl: "h-14 rounded-xl px-12 py-4 text-lg",
         icon: "h-10 w-10",
       },
     },
