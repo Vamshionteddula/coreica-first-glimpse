@@ -14,7 +14,144 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      applications: {
+        Row: {
+          additional_info: string | null
+          branch: string
+          college: string | null
+          created_at: string
+          email: string
+          full_name: string
+          id: string
+          interest_area: string
+          phone: string | null
+          resume_url: string | null
+          status: string | null
+          updated_at: string
+          user_id: string
+          year_of_study: string | null
+        }
+        Insert: {
+          additional_info?: string | null
+          branch: string
+          college?: string | null
+          created_at?: string
+          email: string
+          full_name: string
+          id?: string
+          interest_area: string
+          phone?: string | null
+          resume_url?: string | null
+          status?: string | null
+          updated_at?: string
+          user_id: string
+          year_of_study?: string | null
+        }
+        Update: {
+          additional_info?: string | null
+          branch?: string
+          college?: string | null
+          created_at?: string
+          email?: string
+          full_name?: string
+          id?: string
+          interest_area?: string
+          phone?: string | null
+          resume_url?: string | null
+          status?: string | null
+          updated_at?: string
+          user_id?: string
+          year_of_study?: string | null
+        }
+        Relationships: []
+      }
+      job_postings: {
+        Row: {
+          application_deadline: string | null
+          company_name: string
+          contact_email: string
+          contact_phone: string | null
+          created_at: string
+          description: string | null
+          duration: string | null
+          id: string
+          is_active: boolean | null
+          job_type: string
+          location: string | null
+          requirements: string | null
+          role: string
+          stipend: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          application_deadline?: string | null
+          company_name: string
+          contact_email: string
+          contact_phone?: string | null
+          created_at?: string
+          description?: string | null
+          duration?: string | null
+          id?: string
+          is_active?: boolean | null
+          job_type: string
+          location?: string | null
+          requirements?: string | null
+          role: string
+          stipend?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          application_deadline?: string | null
+          company_name?: string
+          contact_email?: string
+          contact_phone?: string | null
+          created_at?: string
+          description?: string | null
+          duration?: string | null
+          id?: string
+          is_active?: boolean | null
+          job_type?: string
+          location?: string | null
+          requirements?: string | null
+          role?: string
+          stipend?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          role: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          role?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          role?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
