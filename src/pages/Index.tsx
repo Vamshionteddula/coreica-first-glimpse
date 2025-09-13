@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Zap, Globe, Users, BookOpen, ChevronDown } from "lucide-react";
 import heroBackground from "@/assets/hero-background.jpg";
-import coreichaLogo from "@/assets/coreica-logo.png";
+import coreicaLogo from "@/assets/coreica-logo-official.png";
 import visionIllustration from "@/assets/vision-illustration.jpg";
 
 const Index = () => {
@@ -40,7 +40,7 @@ const Index = () => {
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <img src={coreichaLogo} alt="Coreica" className="h-8 w-auto" />
+              <img src={coreicaLogo} alt="Coreica" className="h-8 w-auto" />
               <span className="font-display text-xl font-bold text-neon-cyan">Coreica</span>
             </div>
             <div className="hidden md:flex items-center gap-8">
@@ -272,7 +272,7 @@ const Index = () => {
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <img src={coreichaLogo} alt="Coreica" className="h-8 w-auto" />
+                <img src={coreicaLogo} alt="Coreica" className="h-8 w-auto" />
                 <span className="font-display text-xl font-bold text-neon-cyan">Coreica</span>
               </div>
               <p className="text-foreground/70">
