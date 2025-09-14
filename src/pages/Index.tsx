@@ -4,6 +4,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { AnimatedCounter } from "@/components/ui/animated-counter";
 import { useAuth } from "@/hooks/useAuth";
+import AboutSection from "@/components/sections/AboutSection";
+import ServicesSection from "@/components/sections/ServicesSection";
+import ContactSection from "@/components/sections/ContactSection";
+import ScrollToTop from "@/components/ui/scroll-to-top";
 import { 
   Building2, 
   Users, 
@@ -34,6 +38,13 @@ export default function Index() {
     }
   };
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background/95 to-primary/5">
       <div className="fixed inset-0 bg-grid-white/[0.02] bg-[size:50px_50px] pointer-events-none" />
@@ -61,13 +72,25 @@ export default function Index() {
                     )}
                   </>
                 )}
-                <Button variant="ghost" className="text-muted-foreground hover:text-foreground">
+                <Button 
+                  variant="ghost" 
+                  className="text-muted-foreground hover:text-foreground"
+                  onClick={() => scrollToSection('about')}
+                >
                   About
                 </Button>
-                <Button variant="ghost" className="text-muted-foreground hover:text-foreground">
+                <Button 
+                  variant="ghost" 
+                  className="text-muted-foreground hover:text-foreground"
+                  onClick={() => scrollToSection('services')}
+                >
                   Services
                 </Button>
-                <Button variant="ghost" className="text-muted-foreground hover:text-foreground">
+                <Button 
+                  variant="ghost" 
+                  className="text-muted-foreground hover:text-foreground"
+                  onClick={() => scrollToSection('contact')}
+                >
                   Contact
                 </Button>
                 <Button 
@@ -276,6 +299,15 @@ export default function Index() {
           </div>
         </section>
 
+        {/* About Section */}
+        <AboutSection />
+
+        {/* Services Section */}
+        <ServicesSection />
+
+        {/* Contact Section */}
+        <ContactSection />
+
         {/* CTA Section */}
         <section className="py-20 bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10">
           <div className="max-w-4xl mx-auto text-center px-4">
@@ -353,6 +385,8 @@ export default function Index() {
           </div>
         </footer>
       </main>
+      
+      <ScrollToTop />
     </div>
   );
 }

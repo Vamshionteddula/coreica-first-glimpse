@@ -11,6 +11,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { toast } from '@/hooks/use-toast';
 import coreicaLogo from '@/assets/coreica-logo-official.png';
 import { ArrowLeft, Upload, User, Mail, Phone, GraduationCap, FileText } from 'lucide-react';
+import LoadingSpinner from '@/components/ui/loading-spinner';
 
 const branches = [
   'Mechanical Engineering',
@@ -142,9 +143,23 @@ export default function ApplicationForm() {
         throw insertError;
       }
 
+      // Send confirmation email
+      try {
+        await supabase.functions.invoke('send-confirmation', {
+          body: {
+            to: formData.email,
+            name: formData.fullName,
+            type: 'application'
+          }
+        });
+      } catch (emailError) {
+        console.error('Failed to send confirmation email:', emailError);
+        // Don't fail the application submission if email fails
+      }
+
       toast({
         title: "Application Submitted!",
-        description: "Your application has been successfully submitted. We'll be in touch soon!",
+        description: "Your application has been successfully submitted. Check your email for confirmation!",
       });
 
       navigate('/');
@@ -347,7 +362,14 @@ export default function ApplicationForm() {
                 disabled={isLoading}
                 variant="neon"
               >
-                {isLoading ? "Submitting Application..." : "Submit Application"}
+                {isLoading ? (
+                  <>
+                    <LoadingSpinner size="sm" className="mr-2" />
+                    Submitting Application...
+                  </>
+                ) : (
+                  "Submit Application"
+                )}
               </Button>
             </form>
           </CardContent>

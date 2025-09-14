@@ -11,6 +11,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { toast } from '@/hooks/use-toast';
 import coreicaLogo from '@/assets/coreica-logo-official.png';
 import { ArrowLeft, Building, Briefcase, MapPin, DollarSign, Calendar, Mail, Phone } from 'lucide-react';
+import LoadingSpinner from '@/components/ui/loading-spinner';
 
 export default function JobPosting() {
   const { user, profile } = useAuth();
@@ -76,9 +77,29 @@ export default function JobPosting() {
         throw insertError;
       }
 
+      // Send confirmation email
+      try {
+        await supabase.functions.invoke('send-confirmation', {
+          body: {
+            to: formData.contactEmail,
+            name: formData.companyName,
+            type: 'job_posting',
+            details: {
+              role: formData.role,
+              company: formData.companyName,
+              jobType: formData.jobType,
+              location: formData.location
+            }
+          }
+        });
+      } catch (emailError) {
+        console.error('Failed to send confirmation email:', emailError);
+        // Don't fail the job posting if email fails
+      }
+
       toast({
         title: "Job Posted Successfully!",
-        description: "Your job posting is now live and visible to candidates.",
+        description: "Your job posting is now live! Check your email for confirmation.",
       });
 
       navigate('/');
@@ -294,7 +315,14 @@ export default function JobPosting() {
                 disabled={isLoading}
                 variant="neon"
               >
-                {isLoading ? "Posting Job..." : "Post Job Opportunity"}
+                {isLoading ? (
+                  <>
+                    <LoadingSpinner size="sm" className="mr-2" />
+                    Posting Job...
+                  </>
+                ) : (
+                  "Post Job Opportunity"
+                )}
               </Button>
             </form>
           </CardContent>
