@@ -14,7 +14,7 @@ import { ArrowLeft, Building, Briefcase, MapPin, DollarSign, Calendar, Mail, Pho
 import LoadingSpinner from '@/components/ui/loading-spinner';
 
 export default function JobPosting() {
-  const { user, profile } = useAuth();
+  const { user, profile, userRole } = useAuth();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -47,12 +47,13 @@ export default function JobPosting() {
     setIsLoading(true);
 
     try {
-      // Update user profile to company role if not already
-      if (profile?.role === 'user') {
+      // Add company role if user doesn't have it
+      if (userRole === 'user') {
         await supabase
-          .from('profiles')
-          .update({ role: 'company' })
-          .eq('user_id', user.id);
+          .from('user_roles')
+          .insert({ user_id: user.id, role: 'company' })
+          .select()
+          .single();
       }
 
       // Insert job posting

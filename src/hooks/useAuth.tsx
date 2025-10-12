@@ -7,15 +7,19 @@ interface Profile {
   user_id: string;
   full_name: string | null;
   email: string | null;
-  role: 'user' | 'admin' | 'company';
   created_at: string;
   updated_at: string;
+}
+
+interface UserRole {
+  role: 'user' | 'admin' | 'company';
 }
 
 interface AuthContextType {
   user: User | null;
   session: Session | null;
   profile: Profile | null;
+  userRole: 'user' | 'admin' | 'company' | null;
   loading: boolean;
   signUp: (email: string, password: string, fullName: string) => Promise<{ error: any }>;
   signIn: (email: string, password: string) => Promise<{ error: any }>;
@@ -29,6 +33,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [profile, setProfile] = useState<Profile | null>(null);
+  const [userRole, setUserRole] = useState<'user' | 'admin' | 'company' | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -39,18 +44,27 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setUser(session?.user ?? null);
         
         if (session?.user) {
-          // Fetch user profile
+          // Fetch user profile and role separately
           setTimeout(async () => {
-            const { data: profileData } = await supabase
-              .from('profiles')
-              .select('*')
-              .eq('user_id', session.user.id)
-              .single();
+            const [profileRes, roleRes] = await Promise.all([
+              supabase
+                .from('profiles')
+                .select('*')
+                .eq('user_id', session.user.id)
+                .single(),
+              supabase
+                .from('user_roles')
+                .select('role')
+                .eq('user_id', session.user.id)
+                .single()
+            ]);
             
-            setProfile(profileData as Profile);
+            setProfile(profileRes.data as Profile);
+            setUserRole(roleRes.data?.role || 'user');
           }, 0);
         } else {
           setProfile(null);
+          setUserRole(null);
         }
         setLoading(false);
       }
@@ -112,6 +126,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       user,
       session,
       profile,
+      userRole,
       loading,
       signUp,
       signIn,

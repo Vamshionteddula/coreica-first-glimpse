@@ -42,7 +42,7 @@ interface JobPosting {
 }
 
 export default function Dashboard() {
-  const { user, profile } = useAuth();
+  const { user, userRole } = useAuth();
   const navigate = useNavigate();
   const [applications, setApplications] = useState<Application[]>([]);
   const [jobPostings, setJobPostings] = useState<JobPosting[]>([]);
@@ -54,17 +54,17 @@ export default function Dashboard() {
       return;
     }
 
-    if (profile?.role !== 'admin' && profile?.role !== 'company') {
+    if (userRole !== 'admin' && userRole !== 'company') {
       navigate('/');
       return;
     }
 
     fetchData();
-  }, [user, profile, navigate]);
+  }, [user, userRole, navigate]);
 
   const fetchData = async () => {
     try {
-      if (profile?.role === 'admin') {
+      if (userRole === 'admin') {
         // Admin can see all data
         const [applicationsRes, jobPostingsRes] = await Promise.all([
           supabase.from('applications').select('*').order('created_at', { ascending: false }),
@@ -73,12 +73,12 @@ export default function Dashboard() {
 
         if (applicationsRes.data) setApplications(applicationsRes.data as Application[]);
         if (jobPostingsRes.data) setJobPostings(jobPostingsRes.data as JobPosting[]);
-      } else if (profile?.role === 'company') {
+      } else if (userRole === 'company') {
         // Company can only see their own job postings
         const jobPostingsRes = await supabase
           .from('job_postings')
           .select('*')
-          .eq('user_id', user.id)
+          .eq('user_id', user!.id)
           .order('created_at', { ascending: false });
 
         if (jobPostingsRes.data) setJobPostings(jobPostingsRes.data as JobPosting[]);
@@ -157,7 +157,7 @@ export default function Dashboard() {
           </Button>
           <img src={coreicaLogo} alt="Coreica" className="h-16 mx-auto mb-4" />
           <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            {profile?.role === 'admin' ? 'Admin Dashboard' : 'Company Dashboard'}
+            {userRole === 'admin' ? 'Admin Dashboard' : 'Company Dashboard'}
           </h1>
           <p className="text-muted-foreground mt-2">
             Manage applications and job postings
@@ -165,7 +165,7 @@ export default function Dashboard() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          {profile?.role === 'admin' && (
+          {userRole === 'admin' && (
             <Card className="border-border/50 bg-card/95 backdrop-blur-sm">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">Total Applications</CardTitle>
@@ -187,7 +187,7 @@ export default function Dashboard() {
             </CardContent>
           </Card>
 
-          {profile?.role === 'admin' && (
+          {userRole === 'admin' && (
             <Card className="border-border/50 bg-card/95 backdrop-blur-sm">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">Pending Reviews</CardTitle>
@@ -202,15 +202,15 @@ export default function Dashboard() {
           )}
         </div>
 
-        <Tabs defaultValue={profile?.role === 'admin' ? 'applications' : 'job-postings'} className="space-y-4">
+        <Tabs defaultValue={userRole === 'admin' ? 'applications' : 'job-postings'} className="space-y-4">
           <TabsList className="grid w-full grid-cols-2">
-            {profile?.role === 'admin' && (
+            {userRole === 'admin' && (
               <TabsTrigger value="applications">Applications</TabsTrigger>
             )}
             <TabsTrigger value="job-postings">Job Postings</TabsTrigger>
           </TabsList>
 
-          {profile?.role === 'admin' && (
+          {userRole === 'admin' && (
             <TabsContent value="applications">
               <Card className="border-border/50 bg-card/95 backdrop-blur-sm">
                 <CardHeader>
@@ -291,7 +291,7 @@ export default function Dashboard() {
               <CardHeader>
                 <CardTitle>Job Postings</CardTitle>
                 <CardDescription>
-                  {profile?.role === 'admin' ? 'All job postings in the system' : 'Your company job postings'}
+                  {userRole === 'admin' ? 'All job postings in the system' : 'Your company job postings'}
                 </CardDescription>
               </CardHeader>
               <CardContent>

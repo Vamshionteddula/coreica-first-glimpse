@@ -30,7 +30,7 @@ import visionIllustration from '@/assets/vision-illustration.jpg';
 
 export default function Index() {
   const navigate = useNavigate();
-  const { user, profile, signOut } = useAuth();
+  const { user, profile, userRole, signOut } = useAuth();
 
   const handleAuthAction = () => {
     if (user) {
@@ -63,7 +63,7 @@ export default function Index() {
                     <span className="text-sm text-muted-foreground">
                       Welcome, {profile?.full_name || user.email}
                     </span>
-                    {(profile?.role === 'admin' || profile?.role === 'company') && (
+                    {(userRole === 'admin' || userRole === 'company') && (
                       <Button 
                         variant="ghost" 
                         className="text-muted-foreground hover:text-foreground"
@@ -557,63 +557,114 @@ export default function Index() {
               <div>
                 <h3 className="font-bold text-lg mb-6 text-foreground">Platform</h3>
                 <ul className="space-y-3">
-                  {[
-                    { label: "Find Jobs", href: "/apply" },
-                    { label: "Post Jobs", href: "/post-job" },
-                    { label: "Companies", href: "#" },
-                    { label: "Students", href: "#" }
-                  ].map((item, index) => (
-                    <li key={index}>
-                      <a 
-                        href={item.href} 
-                        className="text-muted-foreground hover:text-primary transition-colors duration-300 hover:translate-x-1 transform inline-block"
-                      >
-                        {item.label}
-                      </a>
-                    </li>
-                  ))}
+                  <li>
+                    <Button
+                      variant="link"
+                      className="text-muted-foreground hover:text-primary transition-colors duration-300 p-0 h-auto"
+                      onClick={() => navigate('/apply')}
+                    >
+                      Find Jobs
+                    </Button>
+                  </li>
+                  <li>
+                    <Button
+                      variant="link"
+                      className="text-muted-foreground hover:text-primary transition-colors duration-300 p-0 h-auto"
+                      onClick={() => navigate('/post-job')}
+                    >
+                      Post Jobs
+                    </Button>
+                  </li>
+                  <li>
+                    <Button
+                      variant="link"
+                      className="text-muted-foreground hover:text-primary transition-colors duration-300 p-0 h-auto"
+                      onClick={() => scrollToSection('about')}
+                    >
+                      About Us
+                    </Button>
+                  </li>
+                  <li>
+                    <Button
+                      variant="link"
+                      className="text-muted-foreground hover:text-primary transition-colors duration-300 p-0 h-auto"
+                      onClick={() => scrollToSection('careers')}
+                    >
+                      Careers
+                    </Button>
+                  </li>
                 </ul>
               </div>
               
               <div>
                 <h3 className="font-bold text-lg mb-6 text-foreground">Resources</h3>
                 <ul className="space-y-3">
-                  {[
-                    "Career Guide",
-                    "Interview Tips", 
-                    "Success Stories",
-                    "Industry Insights"
-                  ].map((item, index) => (
-                    <li key={index}>
-                      <a 
-                        href="#" 
-                        className="text-muted-foreground hover:text-secondary transition-colors duration-300 hover:translate-x-1 transform inline-block"
-                      >
-                        {item}
-                      </a>
-                    </li>
-                  ))}
+                  <li>
+                    <Button
+                      variant="link"
+                      className="text-muted-foreground hover:text-secondary transition-colors duration-300 p-0 h-auto"
+                      onClick={() => scrollToSection('services')}
+                    >
+                      Career Guide
+                    </Button>
+                  </li>
+                  <li>
+                    <Button
+                      variant="link"
+                      className="text-muted-foreground hover:text-secondary transition-colors duration-300 p-0 h-auto"
+                      onClick={() => scrollToSection('services')}
+                    >
+                      Interview Tips
+                    </Button>
+                  </li>
+                  <li>
+                    <Button
+                      variant="link"
+                      className="text-muted-foreground hover:text-secondary transition-colors duration-300 p-0 h-auto"
+                      onClick={() => scrollToSection('about')}
+                    >
+                      Success Stories
+                    </Button>
+                  </li>
+                  <li>
+                    <Button
+                      variant="link"
+                      className="text-muted-foreground hover:text-secondary transition-colors duration-300 p-0 h-auto"
+                      onClick={() => scrollToSection('about')}
+                    >
+                      Industry Insights
+                    </Button>
+                  </li>
                 </ul>
               </div>
               
               <div>
                 <h3 className="font-bold text-lg mb-6 text-foreground">Company</h3>
                 <ul className="space-y-3">
-                  {[
-                    "About Us",
-                    "Contact",
-                    "Privacy Policy",
-                    "Terms of Service"
-                  ].map((item, index) => (
-                    <li key={index}>
-                      <a 
-                        href="#" 
-                        className="text-muted-foreground hover:text-accent transition-colors duration-300 hover:translate-x-1 transform inline-block"
-                      >
-                        {item}
-                      </a>
-                    </li>
-                  ))}
+                  <li>
+                    <Button
+                      variant="link"
+                      className="text-muted-foreground hover:text-accent transition-colors duration-300 p-0 h-auto"
+                      onClick={() => scrollToSection('about')}
+                    >
+                      About Us
+                    </Button>
+                  </li>
+                  <li>
+                    <Button
+                      variant="link"
+                      className="text-muted-foreground hover:text-accent transition-colors duration-300 p-0 h-auto"
+                      onClick={() => scrollToSection('contact')}
+                    >
+                      Contact
+                    </Button>
+                  </li>
+                  <li>
+                    <span className="text-muted-foreground text-sm">Privacy Policy</span>
+                  </li>
+                  <li>
+                    <span className="text-muted-foreground text-sm">Terms of Service</span>
+                  </li>
                 </ul>
               </div>
             </div>
