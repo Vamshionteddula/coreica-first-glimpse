@@ -164,16 +164,16 @@ export default function Index() {
                 <Button 
                   size="xl" 
                   variant="neon"
-                  className="px-12 py-8 text-xl font-bold min-w-[250px] group animate-shimmer shadow-2xl hover:shadow-neon transform hover:scale-105 transition-all duration-500"
+                  className="px-12 py-8 text-xl font-bold min-w-[250px] group shadow-2xl"
                   onClick={() => navigate('/apply')}
                 >
                   Apply for Jobs
-                  <ArrowRight className="ml-3 w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" />
+                  <ArrowRight className="ml-3 w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
                 </Button>
                 <Button 
                   size="xl" 
                   variant="outline" 
-                  className="px-12 py-8 text-xl font-bold border-3 border-white/40 text-white hover:bg-white/15 min-w-[250px] backdrop-blur-sm hover:border-primary/60 transition-all duration-500 hover:shadow-glow-primary"
+                  className="px-12 py-8 text-xl font-bold border-3 border-white/40 text-white hover:bg-white/15 min-w-[250px] backdrop-blur-sm hover:border-primary/60 transition-all duration-300"
                   onClick={() => navigate('/post-job')}
                 >
                   Post Opportunities
@@ -402,9 +402,9 @@ export default function Index() {
                     ))}
                   </div>
 
-                  <Button variant="neon" size="xl" className="group shadow-2xl animate-shimmer">
+                  <Button variant="neon" size="xl" className="group shadow-2xl">
                     Join Our Mission
-                    <ArrowRight className="ml-3 w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" />
+                    <ArrowRight className="ml-3 w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
                   </Button>
                 </div>
               </ScrollAnimation>
@@ -500,16 +500,16 @@ export default function Index() {
                   <Button 
                     size="xl" 
                     variant="neon"
-                    className="px-12 py-8 text-xl font-bold min-w-[250px] group animate-shimmer shadow-2xl hover:shadow-neon transform hover:scale-105 transition-all duration-500"
+                    className="px-12 py-8 text-xl font-bold min-w-[250px] group shadow-2xl"
                     onClick={() => navigate('/apply')}
                   >
                     Apply for Jobs
-                    <span className="ml-3 group-hover:translate-x-2 transition-transform duration-300 text-2xl">🚀</span>
+                    <span className="ml-3 group-hover:translate-x-1 transition-transform duration-300 text-2xl">🚀</span>
                   </Button>
                   <Button 
                     size="xl" 
                     variant="outline" 
-                    className="px-12 py-8 text-xl font-bold border-3 min-w-[250px] hover:bg-primary/5 hover:border-primary/50 hover:shadow-glow-primary transition-all duration-500"
+                    className="px-12 py-8 text-xl font-bold border-3 min-w-[250px] hover:bg-primary/5 hover:border-primary/50 transition-all duration-300"
                     onClick={() => navigate('/post-job')}
                   >
                     Post Opportunities
