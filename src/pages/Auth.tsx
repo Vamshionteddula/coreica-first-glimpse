@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { z } from 'zod';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -9,6 +10,32 @@ import { useAuth } from '@/hooks/useAuth';
 import { toast } from '@/hooks/use-toast';
 import coreicaLogo from '@/assets/coreica-logo-official.png';
 import { ArrowLeft, Mail, Lock, User } from 'lucide-react';
+
+const loginSchema = z.object({
+  email: z.string()
+    .trim()
+    .min(1, 'Email is required')
+    .email('Please enter a valid email address')
+    .max(255, 'Email must be less than 255 characters'),
+  password: z.string()
+    .min(6, 'Password must be at least 6 characters')
+    .max(100, 'Password must be less than 100 characters')
+});
+
+const signupSchema = z.object({
+  fullName: z.string()
+    .trim()
+    .min(2, 'Name must be at least 2 characters')
+    .max(100, 'Name must be less than 100 characters'),
+  email: z.string()
+    .trim()
+    .min(1, 'Email is required')
+    .email('Please enter a valid email address')
+    .max(255, 'Email must be less than 255 characters'),
+  password: z.string()
+    .min(6, 'Password must be at least 6 characters')
+    .max(100, 'Password must be less than 100 characters')
+});
 
 export default function Auth() {
   const [isLoading, setIsLoading] = useState(false);
@@ -31,12 +58,17 @@ export default function Auth() {
     setIsLoading(true);
 
     try {
-      const { error } = await signIn(loginForm.email, loginForm.password);
+      // Validate input
+      const validatedData = loginSchema.parse(loginForm);
+      console.log('Login attempt with email:', validatedData.email);
+      
+      const { error } = await signIn(validatedData.email, validatedData.password);
       
       if (error) {
+        console.error('Login error:', error);
         toast({
           title: "Login Failed",
-          description: error.message,
+          description: error.message || 'Invalid email or password',
           variant: "destructive",
         });
       } else {
@@ -47,11 +79,20 @@ export default function Auth() {
         navigate('/');
       }
     } catch (error) {
-      toast({
-        title: "Error",
-        description: "An unexpected error occurred. Please try again.",
-        variant: "destructive",
-      });
+      console.error('Login validation error:', error);
+      if (error instanceof z.ZodError) {
+        toast({
+          title: "Validation Error",
+          description: error.errors[0].message,
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Error",
+          description: "An unexpected error occurred. Please try again.",
+          variant: "destructive",
+        });
+      }
     } finally {
       setIsLoading(false);
     }
@@ -62,12 +103,30 @@ export default function Auth() {
     setIsLoading(true);
 
     try {
-      const { error } = await signUp(signupForm.email, signupForm.password, signupForm.fullName);
+      // Validate input
+      const validatedData = signupSchema.parse(signupForm);
+      console.log('Signup attempt with email:', validatedData.email);
+      
+      const { error } = await signUp(
+        validatedData.email.trim(), 
+        validatedData.password, 
+        validatedData.fullName.trim()
+      );
       
       if (error) {
+        console.error('Signup error:', error);
+        
+        // Provide more helpful error messages
+        let errorMessage = error.message;
+        if (error.message.includes('email_address_invalid')) {
+          errorMessage = 'This email address is not allowed. Please use a different email or contact support.';
+        } else if (error.message.includes('User already registered')) {
+          errorMessage = 'This email is already registered. Please sign in instead.';
+        }
+        
         toast({
           title: "Registration Failed",
-          description: error.message,
+          description: errorMessage,
           variant: "destructive",
         });
       } else {
@@ -75,13 +134,24 @@ export default function Auth() {
           title: "Registration Successful!",
           description: "Please check your email to verify your account.",
         });
+        // Switch to login tab
+        setSignupForm({ email: '', password: '', fullName: '' });
       }
     } catch (error) {
-      toast({
-        title: "Error",
-        description: "An unexpected error occurred. Please try again.",
-        variant: "destructive",
-      });
+      console.error('Signup validation error:', error);
+      if (error instanceof z.ZodError) {
+        toast({
+          title: "Validation Error",
+          description: error.errors[0].message,
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Error",
+          description: "An unexpected error occurred. Please try again.",
+          variant: "destructive",
+        });
+      }
     } finally {
       setIsLoading(false);
     }
