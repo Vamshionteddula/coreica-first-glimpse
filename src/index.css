@@ -6,46 +6,46 @@
 
 @layer base {
   :root {
-    /* Core Brand Colors - Deep Blues & Futuristic Accents */
-    --background: 210 40% 2%;
+    /* Core Brand Colors - Enhanced Contrast */
+    --background: 220 45% 4%;
     --foreground: 210 40% 98%;
 
-    --card: 222 47% 5%;
+    --card: 220 40% 8%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 222 47% 6%;
+    --popover: 220 40% 10%;
     --popover-foreground: 210 40% 98%;
 
-    /* Primary: Deep Tech Blue */
-    --primary: 217 91% 12%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary: Vibrant Tech Blue */
+    --primary: 210 100% 55%;
+    --primary-foreground: 220 45% 4%;
 
-    /* Secondary: Neon Accent */
-    --secondary: 188 100% 45%;
-    --secondary-foreground: 222 47% 11%;
+    /* Secondary: Bright Cyan */
+    --secondary: 180 100% 50%;
+    --secondary-foreground: 220 45% 4%;
 
-    --muted: 217 32% 12%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 220 30% 18%;
+    --muted-foreground: 215 25% 75%;
 
-    /* Accent: Neon Cyan */
-    --accent: 180 100% 50%;
-    --accent-foreground: 222 47% 11%;
+    /* Accent: Electric Cyan */
+    --accent: 180 100% 55%;
+    --accent-foreground: 220 45% 4%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217 32% 15%;
-    --input: 217 32% 15%;
-    --ring: 180 100% 50%;
+    --border: 220 30% 20%;
+    --input: 220 30% 18%;
+    --ring: 180 100% 55%;
 
     --radius: 0.75rem;
 
     /* Custom Futuristic Colors */
-    --neon-cyan: 180 100% 50%;
-    --neon-purple: 270 100% 60%;
-    --deep-space: 217 91% 8%;
-    --silver: 210 15% 85%;
-    --electric-blue: 217 91% 25%;
+    --neon-cyan: 180 100% 55%;
+    --neon-purple: 270 100% 65%;
+    --deep-space: 220 50% 6%;
+    --silver: 210 20% 88%;
+    --electric-blue: 210 100% 60%;
 
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--electric-blue)));
@@ -70,25 +70,25 @@
   }
 
   .dark {
-    --background: 210 40% 2%;
+    --background: 220 45% 4%;
     --foreground: 210 40% 98%;
-    --card: 222 47% 5%;
+    --card: 220 40% 8%;
     --card-foreground: 210 40% 98%;
-    --popover: 222 47% 6%;
+    --popover: 220 40% 10%;
     --popover-foreground: 210 40% 98%;
-    --primary: 217 91% 15%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 188 100% 45%;
-    --secondary-foreground: 222 47% 11%;
-    --muted: 217 32% 12%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 180 100% 50%;
-    --accent-foreground: 222 47% 11%;
+    --primary: 210 100% 55%;
+    --primary-foreground: 220 45% 4%;
+    --secondary: 180 100% 50%;
+    --secondary-foreground: 220 45% 4%;
+    --muted: 220 30% 18%;
+    --muted-foreground: 215 25% 75%;
+    --accent: 180 100% 55%;
+    --accent-foreground: 220 45% 4%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
-    --border: 217 32% 15%;
-    --input: 217 32% 15%;
-    --ring: 180 100% 50%;
+    --border: 220 30% 20%;
+    --input: 220 30% 18%;
+    --ring: 180 100% 55%;
   }
 }
 
