@@ -47,11 +47,21 @@ export default function Index() {
   return (
     <div className="min-h-screen bg-background">
       <main className="relative">
-        {/* Navigation - Noura Style */}
+        {/* Navigation - Premium Style */}
         <nav className="fixed top-6 left-0 right-0 z-50 px-8">
           <div className="max-w-7xl mx-auto flex justify-between items-center">
-            {/* Logo */}
-            <img src={coreicaLogo} alt="Coreica" className="h-10" />
+            {/* Logo with Glow Effect */}
+            <div className="logo-container group cursor-pointer" onClick={() => scrollToSection('hero')}>
+              <div className="logo-glow" />
+              <img 
+                src={coreicaLogo} 
+                alt="Coreica" 
+                className="logo-image h-12 group-hover:animate-pulse-glow"
+              />
+              <span className="hidden md:block text-2xl font-display font-semibold tracking-tight text-gradient">
+                Coreica
+              </span>
+            </div>
             
             {/* Navigation Pill */}
             <div className="nav-pill shadow-sm">
@@ -90,38 +100,55 @@ export default function Index() {
           </div>
         </nav>
 
-        {/* Hero Section - Noura Style */}
+        {/* Hero Section - Dynamic Premium Style */}
         <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24">
-          {/* Floating Images */}
+          {/* Animated Background Glow */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-pulse-glow" />
+            <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-secondary/10 rounded-full blur-3xl animate-pulse-glow stagger-2" />
+          </div>
+
+          {/* Floating Images with Enhanced Animation */}
           {floatingImages.map((img, index) => (
-            <img
+            <div
               key={index}
-              src={img.src}
-              alt={img.alt}
-              className={img.className}
+              className={`${img.className} hover-glow magnetic-hover`}
               style={{ animationDelay: img.delay }}
-            />
+            >
+              <img
+                src={img.src}
+                alt={img.alt}
+                className="w-full h-full object-cover rounded-2xl shadow-medium"
+              />
+            </div>
           ))}
           
-          {/* Center Content */}
+          {/* Center Content with Staggered Animation */}
           <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
-            <h1 className="text-display text-6xl md:text-7xl lg:text-8xl font-normal mb-8 leading-[1.1] text-foreground">
+            <h1 className="text-display text-6xl md:text-7xl lg:text-8xl font-normal mb-8 leading-[1.1] text-foreground hero-text-enter">
               Engineering that
               <br />
-              <span className="italic">resonates</span>
+              <span className="italic text-gradient">resonates</span>
             </h1>
             
-            <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto hero-text-enter-delay-1">
               A platform connecting core engineering talent with global opportunities — always.
             </p>
             
             <Button 
               size="lg"
               onClick={() => navigate('/apply')}
-              className="px-10 py-6 text-base"
+              className="px-10 py-6 text-base magnetic-hover animate-pulse-glow hero-text-enter-delay-2"
             >
               Learn more
             </Button>
+          </div>
+
+          {/* Scroll Indicator */}
+          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce-gentle hero-text-enter-delay-3">
+            <div className="w-6 h-10 border-2 border-muted-foreground/50 rounded-full flex justify-center pt-2">
+              <div className="w-1 h-2 bg-muted-foreground/50 rounded-full animate-bounce-gentle" />
+            </div>
           </div>
         </section>
 
@@ -325,11 +352,17 @@ export default function Index() {
         </div>
 
         {/* Footer */}
-        <footer className="py-16 border-t border-border bg-background">
+        <footer className="py-20 border-t border-border bg-card/50">
           <div className="max-w-7xl mx-auto px-8">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
               <div className="space-y-6">
-                <img src={coreicaLogo} alt="Coreica" className="h-10" />
+                <div className="logo-container group">
+                  <div className="logo-glow" />
+                  <img src={coreicaLogo} alt="Coreica" className="logo-image h-12" />
+                  <span className="text-xl font-display font-semibold tracking-tight text-gradient">
+                    Coreica
+                  </span>
+                </div>
                 <p className="text-muted-foreground text-sm leading-relaxed">
                   Bridging Core Engineering with Global Opportunities.
                 </p>
