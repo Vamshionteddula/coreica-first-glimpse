@@ -5,12 +5,19 @@ import AboutSection from "@/components/sections/AboutSection";
 import ServicesSection from "@/components/sections/ServicesSection";
 import ContactSection from "@/components/sections/ContactSection";
 import CareersSection from "@/components/sections/CareersSection";
+import HeroSection from "@/components/sections/HeroSection";
 import ScrollToTop from "@/components/ui/scroll-to-top";
 import ScrollAnimation from "@/components/ui/scroll-animation";
-import { ArrowRight, LogIn, LogOut } from "lucide-react";
+import ParticleField from "@/components/ui/particle-field";
+import Marquee from "@/components/ui/marquee";
+import { ArrowRight, LogIn, LogOut, Sparkles, Star, Zap, Target, Shield, Users, Globe } from "lucide-react";
 import coreicaLogo from '@/assets/coreica-logo-official.png';
-import heroBg from '@/assets/hero-background.jpg';
-import visionIllustration from '@/assets/vision-illustration.jpg';
+import heroAbstract from '@/assets/hero-abstract-1.jpg';
+import floatingSculpture1 from '@/assets/floating-sculpture-1.jpg';
+import floatingSculpture2 from '@/assets/floating-sculpture-2.jpg';
+import techWorkspace from '@/assets/tech-workspace.jpg';
+import liquidGold from '@/assets/liquid-gold.jpg';
+import patternBg from '@/assets/pattern-bg.jpg';
 
 export default function Index() {
   const navigate = useNavigate();
@@ -31,61 +38,68 @@ export default function Index() {
     }
   };
 
-  // Floating images data
-  const floatingImages = [
-    { src: heroBg, alt: "Engineering 1", className: "absolute top-20 left-[15%] w-28 h-36 object-cover rounded-2xl animate-float-slow", delay: "0s" },
-    { src: visionIllustration, alt: "Engineering 2", className: "absolute top-12 left-[35%] w-24 h-32 object-cover rounded-2xl animate-float-medium", delay: "1s" },
-    { src: heroBg, alt: "Engineering 3", className: "absolute top-8 right-[30%] w-28 h-36 object-cover rounded-2xl animate-float-slow", delay: "0.5s" },
-    { src: visionIllustration, alt: "Engineering 4", className: "absolute top-24 right-[12%] w-24 h-32 object-cover rounded-2xl animate-float-medium", delay: "1.5s" },
-    { src: heroBg, alt: "Engineering 5", className: "absolute top-[40%] left-[8%] w-24 h-32 object-cover rounded-2xl animate-float-fast", delay: "2s" },
-    { src: visionIllustration, alt: "Engineering 6", className: "absolute top-[45%] right-[6%] w-28 h-36 object-cover rounded-2xl animate-float-slow", delay: "0.8s" },
-    { src: heroBg, alt: "Engineering 7", className: "absolute bottom-[25%] left-[20%] w-24 h-32 object-cover rounded-2xl animate-float-medium", delay: "1.2s" },
-    { src: visionIllustration, alt: "Engineering 8", className: "absolute bottom-[20%] left-[45%] w-28 h-36 object-cover rounded-2xl animate-float-slow", delay: "0.3s" },
-    { src: heroBg, alt: "Engineering 9", className: "absolute bottom-[28%] right-[18%] w-24 h-32 object-cover rounded-2xl animate-float-fast", delay: "1.8s" },
+  const partners = [
+    "Microsoft", "Google", "Amazon", "Siemens", "Tesla", "Boeing", 
+    "Caterpillar", "GE", "Honeywell", "ABB", "Schneider Electric", "Bosch"
+  ];
+
+  const features = [
+    { icon: Zap, title: "Instant Matching", description: "AI-powered job matching in seconds" },
+    { icon: Target, title: "Precision Placement", description: "95% placement success rate" },
+    { icon: Shield, title: "Verified Companies", description: "Only top-tier employers" },
+    { icon: Users, title: "Community", description: "10,000+ active engineers" },
+    { icon: Globe, title: "Global Reach", description: "Opportunities in 50+ countries" },
+    { icon: Star, title: "Premium Support", description: "Dedicated career advisors" },
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-x-hidden">
+      {/* Particle Background */}
+      <ParticleField />
+
       <main className="relative">
-        {/* Navigation - Premium Style */}
-        <nav className="fixed top-6 left-0 right-0 z-50 px-8">
+        {/* Premium Navigation */}
+        <nav className="fixed top-6 left-0 right-0 z-50 px-4 md:px-8">
           <div className="max-w-7xl mx-auto flex justify-between items-center">
-            {/* Logo with Glow Effect */}
-            <div className="logo-container group cursor-pointer" onClick={() => scrollToSection('hero')}>
+            {/* Logo with Premium Glow Effect */}
+            <div 
+              className="logo-container group cursor-pointer" 
+              onClick={() => scrollToSection('hero')}
+            >
               <div className="logo-glow" />
               <img 
                 src={coreicaLogo} 
                 alt="Coreica" 
-                className="logo-image h-12 group-hover:animate-pulse-glow"
+                className="logo-image h-10 md:h-12"
               />
-              <span className="hidden md:block text-2xl font-display font-semibold tracking-tight text-gradient">
+              <span className="hidden md:block text-xl md:text-2xl font-display font-semibold tracking-tight text-gradient">
                 Coreica
               </span>
             </div>
             
             {/* Navigation Pill */}
-            <div className="nav-pill shadow-sm">
+            <div className="nav-pill glass">
               <button 
                 onClick={() => scrollToSection('hero')}
-                className="text-sm font-medium text-foreground hover:text-muted-foreground transition-colors"
+                className="text-xs md:text-sm font-medium text-foreground hover:text-accent transition-colors hover-underline"
               >
                 Home
               </button>
               <button 
                 onClick={() => scrollToSection('about')}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                className="hidden sm:block text-xs md:text-sm font-medium text-muted-foreground hover:text-foreground transition-colors hover-underline"
               >
                 About
               </button>
               <button 
                 onClick={() => scrollToSection('services')}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                className="hidden sm:block text-xs md:text-sm font-medium text-muted-foreground hover:text-foreground transition-colors hover-underline"
               >
                 Services
               </button>
               <button 
                 onClick={() => scrollToSection('careers')}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                className="hidden md:block text-xs md:text-sm font-medium text-muted-foreground hover:text-foreground transition-colors hover-underline"
               >
                 Careers
               </button>
@@ -93,6 +107,7 @@ export default function Index() {
                 variant="default" 
                 size="sm"
                 onClick={() => scrollToSection('contact')}
+                className="magnetic-hover text-xs md:text-sm"
               >
                 Contact
               </Button>
@@ -100,109 +115,129 @@ export default function Index() {
           </div>
         </nav>
 
-        {/* Hero Section - Dynamic Premium Style */}
-        <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24">
-          {/* Animated Background Glow */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-pulse-glow" />
-            <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-secondary/10 rounded-full blur-3xl animate-pulse-glow stagger-2" />
-          </div>
+        {/* Hero Section */}
+        <HeroSection />
 
-          {/* Floating Images with Enhanced Animation */}
-          {floatingImages.map((img, index) => (
-            <div
-              key={index}
-              className={`${img.className} hover-glow magnetic-hover`}
-              style={{ animationDelay: img.delay }}
-            >
-              <img
-                src={img.src}
-                alt={img.alt}
-                className="w-full h-full object-cover rounded-2xl shadow-medium"
-              />
-            </div>
-          ))}
+        {/* Partner Marquee Section */}
+        <section className="py-16 border-y border-border/50 bg-card/30 backdrop-blur-sm">
+          <div className="text-center mb-8">
+            <p className="text-sm text-muted-foreground uppercase tracking-wider">
+              Trusted by industry leaders worldwide
+            </p>
+          </div>
+          <Marquee pauseOnHover speed={50} className="[--gap:3rem]">
+            {partners.map((partner, index) => (
+              <div 
+                key={index} 
+                className="text-2xl md:text-3xl font-display font-medium text-foreground/30 hover:text-accent transition-colors duration-300 cursor-default px-4"
+              >
+                {partner}
+              </div>
+            ))}
+          </Marquee>
+        </section>
+
+        {/* We Are Section - Premium */}
+        <section className="py-32 bg-background relative overflow-hidden">
+          {/* Background Pattern */}
+          <div className="absolute inset-0 opacity-5">
+            <img src={patternBg} alt="" className="w-full h-full object-cover" />
+          </div>
           
-          {/* Center Content with Staggered Animation */}
-          <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
-            <h1 className="text-display text-6xl md:text-7xl lg:text-8xl font-normal mb-8 leading-[1.1] text-foreground hero-text-enter">
-              Engineering that
-              <br />
-              <span className="italic text-gradient">resonates</span>
-            </h1>
-            
-            <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto hero-text-enter-delay-1">
-              A platform connecting core engineering talent with global opportunities — always.
-            </p>
-            
-            <Button 
-              size="lg"
-              onClick={() => navigate('/apply')}
-              className="px-10 py-6 text-base magnetic-hover animate-pulse-glow hero-text-enter-delay-2"
-            >
-              Learn more
-            </Button>
-          </div>
-
-          {/* Scroll Indicator */}
-          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce-gentle hero-text-enter-delay-3">
-            <div className="w-6 h-10 border-2 border-muted-foreground/50 rounded-full flex justify-center pt-2">
-              <div className="w-1 h-2 bg-muted-foreground/50 rounded-full animate-bounce-gentle" />
-            </div>
-          </div>
-        </section>
-
-        {/* Clients/Partners Section */}
-        <section className="py-20 border-t border-border">
-          <div className="max-w-7xl mx-auto px-8">
-            <p className="text-center text-sm text-muted-foreground mb-12 max-w-2xl mx-auto">
-              Trusted by companies who value engineering excellence, clarity, and results — from emerging startups to industry-leading names.
-            </p>
-            
-            <div className="flex flex-wrap justify-center items-center gap-12 opacity-60">
-              {["Company A", "Company B", "Company C", "Company D", "Company E", "Company F"].map((company, index) => (
-                <div key={index} className="text-xl font-display text-foreground/50">
-                  {company}
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* We Are Section */}
-        <section className="py-32 bg-background">
-          <div className="max-w-7xl mx-auto px-8">
+          <div className="max-w-7xl mx-auto px-8 relative z-10">
             <ScrollAnimation direction="up" delay={100}>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div className="relative">
-                  <img 
-                    src={visionIllustration}
-                    alt="Our Team"
-                    className="w-full h-[500px] object-cover rounded-3xl"
-                  />
+                <div className="relative group">
+                  <div className="absolute -inset-4 bg-gradient-to-r from-accent/20 to-secondary/20 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                  <div className="relative image-premium shadow-glow">
+                    <img 
+                      src={heroAbstract}
+                      alt="Engineering Excellence"
+                      className="w-full h-[550px] object-cover rounded-3xl"
+                    />
+                  </div>
+                  {/* Floating Badge */}
+                  <div className="absolute -bottom-6 -right-6 glass rounded-2xl p-6 shadow-medium animate-float-slow">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center">
+                        <Star className="w-6 h-6 text-accent" />
+                      </div>
+                      <div>
+                        <div className="text-2xl font-display font-bold text-gradient">98%</div>
+                        <div className="text-xs text-muted-foreground">Satisfaction Rate</div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 
                 <div>
-                  <p className="text-sm text-muted-foreground mb-4 uppercase tracking-wider">We are</p>
-                  <h2 className="text-display text-5xl md:text-6xl font-normal mb-6 text-foreground">
+                  <div className="decorative-line mb-6" />
+                  <p className="text-sm text-accent mb-4 uppercase tracking-wider font-medium">We are</p>
+                  <h2 className="text-display text-4xl md:text-5xl lg:text-6xl font-normal mb-6 text-foreground leading-tight">
                     Not just a simple
                     <br />
-                    platform.
+                    <span className="text-gradient">platform.</span>
                   </h2>
-                  <h3 className="text-display text-4xl md:text-5xl font-normal text-muted-foreground mb-8">
+                  <h3 className="text-display text-3xl md:text-4xl font-normal text-muted-foreground mb-8">
                     Coreica™
                   </h3>
                   <p className="text-lg text-muted-foreground leading-relaxed mb-8">
                     We bridge the gap between traditional engineering excellence and modern career opportunities. 
-                    Connecting mechanical, civil, electrical, ECE, and polytechnic talent with global industries.
+                    Connecting mechanical, civil, electrical, ECE, and polytechnic talent with global industries 
+                    that value precision, innovation, and expertise.
                   </p>
-                  <Button variant="outline" size="lg">
-                    Learn about us
-                    <ArrowRight className="ml-2 w-4 h-4" />
-                  </Button>
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <Button variant="default" size="lg" className="magnetic-hover group">
+                      Learn about us
+                      <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                    </Button>
+                    <Button variant="outline" size="lg" className="magnetic-hover" onClick={handleAuthAction}>
+                      {user ? (
+                        <>
+                          <LogOut className="mr-2 w-4 h-4" />
+                          Sign Out
+                        </>
+                      ) : (
+                        <>
+                          <LogIn className="mr-2 w-4 h-4" />
+                          Sign In
+                        </>
+                      )}
+                    </Button>
+                  </div>
                 </div>
               </div>
             </ScrollAnimation>
+          </div>
+        </section>
+
+        {/* Features Grid */}
+        <section className="py-32 bg-muted/20">
+          <div className="max-w-7xl mx-auto px-8">
+            <ScrollAnimation direction="up" delay={100}>
+              <div className="text-center mb-16">
+                <div className="decorative-line mx-auto mb-6" />
+                <p className="text-sm text-accent mb-4 uppercase tracking-wider font-medium">Why Choose Us</p>
+                <h2 className="text-display text-4xl md:text-5xl font-normal text-foreground">
+                  Built for Engineering
+                  <span className="text-gradient"> Excellence</span>
+                </h2>
+              </div>
+            </ScrollAnimation>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {features.map((feature, index) => (
+                <ScrollAnimation key={index} direction="up" delay={index * 100}>
+                  <div className="group p-8 rounded-3xl bg-card border border-border hover:border-accent/50 transition-all duration-500 magnetic-hover hover-glow">
+                    <div className="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors duration-300">
+                      <feature.icon className="w-7 h-7 text-accent" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-foreground mb-3">{feature.title}</h3>
+                    <p className="text-muted-foreground">{feature.description}</p>
+                  </div>
+                </ScrollAnimation>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -210,14 +245,15 @@ export default function Index() {
         <section className="py-32 bg-background">
           <div className="max-w-7xl mx-auto px-8">
             <ScrollAnimation direction="up" delay={100}>
-              <div className="flex justify-between items-end mb-16">
+              <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
                 <div>
-                  <p className="text-sm text-muted-foreground mb-4 uppercase tracking-wider">Work</p>
-                  <h2 className="text-display text-5xl md:text-6xl font-normal text-foreground">
-                    Our Success Stories
+                  <div className="decorative-line mb-6" />
+                  <p className="text-sm text-accent mb-4 uppercase tracking-wider font-medium">Our Work</p>
+                  <h2 className="text-display text-4xl md:text-5xl lg:text-6xl font-normal text-foreground">
+                    Success Stories
                   </h2>
                 </div>
-                <p className="text-4xl font-display text-muted-foreground">3</p>
+                <p className="text-6xl font-display text-gradient font-bold">3</p>
               </div>
             </ScrollAnimation>
             
@@ -226,33 +262,47 @@ export default function Index() {
                 {
                   title: "Mechanical Excellence",
                   subtitle: "Connecting precision engineering with global manufacturing",
-                  image: heroBg
+                  image: floatingSculpture2,
+                  stat: "2.5K+",
+                  label: "Engineers Placed"
                 },
                 {
                   title: "Civil Innovation",
                   subtitle: "Building infrastructure careers for tomorrow's cities",
-                  image: visionIllustration
+                  image: techWorkspace,
+                  stat: "500+",
+                  label: "Projects Delivered"
                 },
                 {
                   title: "Electrical Future",
                   subtitle: "Powering careers in sustainable energy systems",
-                  image: heroBg
+                  image: liquidGold,
+                  stat: "98%",
+                  label: "Success Rate"
                 }
               ].map((project, index) => (
                 <ScrollAnimation key={index} direction="up" delay={index * 150}>
-                  <div className="group cursor-pointer">
-                    <div className="relative overflow-hidden rounded-2xl mb-4">
+                  <div className="group cursor-pointer magnetic-hover">
+                    <div className="relative overflow-hidden rounded-3xl mb-6 image-premium">
                       <img 
                         src={project.image}
                         alt={project.title}
-                        className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105"
+                        className="w-full h-96 object-cover"
                       />
-                      <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors duration-300" />
-                      <span className="absolute top-4 left-4 text-sm text-background bg-foreground/80 backdrop-blur-sm px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        View case
-                      </span>
+                      <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <div className="absolute bottom-6 left-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+                        <span className="inline-flex items-center gap-2 text-sm text-primary-foreground bg-primary/90 backdrop-blur-sm px-4 py-2 rounded-full">
+                          <Sparkles className="w-4 h-4" />
+                          View case study
+                        </span>
+                      </div>
+                      {/* Stats Badge */}
+                      <div className="absolute top-6 right-6 glass rounded-xl p-3 text-center">
+                        <div className="text-xl font-display font-bold text-gradient">{project.stat}</div>
+                        <div className="text-xs text-muted-foreground">{project.label}</div>
+                      </div>
                     </div>
-                    <h3 className="text-xl font-semibold text-foreground mb-2">{project.title}</h3>
+                    <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-accent transition-colors">{project.title}</h3>
                     <p className="text-muted-foreground">{project.subtitle}</p>
                   </div>
                 </ScrollAnimation>
@@ -262,44 +312,57 @@ export default function Index() {
         </section>
 
         {/* Services Section */}
-        <section id="services" className="py-32 bg-muted/30">
-          <div className="max-w-7xl mx-auto px-8">
+        <section id="services" className="py-32 bg-muted/30 relative overflow-hidden">
+          <div className="absolute inset-0 opacity-5">
+            <img src={patternBg} alt="" className="w-full h-full object-cover" />
+          </div>
+          
+          <div className="max-w-7xl mx-auto px-8 relative z-10">
             <ScrollAnimation direction="up" delay={100}>
-              <p className="text-sm text-muted-foreground mb-4 uppercase tracking-wider text-center">Services</p>
-              <h2 className="text-display text-3xl md:text-4xl lg:text-5xl font-normal text-foreground text-center max-w-5xl mx-auto mb-20 leading-relaxed">
-                At Coreica, we connect engineers with opportunities, build careers, and accelerate growth — with clarity, purpose, and thoughtful detail.
-              </h2>
+              <div className="text-center mb-16">
+                <div className="decorative-line mx-auto mb-6" />
+                <p className="text-sm text-accent mb-4 uppercase tracking-wider font-medium">Services</p>
+                <h2 className="text-display text-3xl md:text-4xl lg:text-5xl font-normal text-foreground max-w-4xl mx-auto leading-relaxed">
+                  We connect engineers with opportunities, build careers, and accelerate growth — with 
+                  <span className="text-gradient"> clarity, purpose, and detail</span>.
+                </h2>
+              </div>
             </ScrollAnimation>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
                 {
                   title: "Career Matching",
-                  subtitle: "Opportunities that resonate",
-                  image: heroBg
+                  subtitle: "Opportunities that resonate with your skills",
+                  image: floatingSculpture1,
+                  description: "AI-powered matching algorithm finds the perfect role for your unique expertise."
                 },
                 {
                   title: "Profile Building",
-                  subtitle: "Designed to impress",
-                  image: visionIllustration
+                  subtitle: "Designed to impress recruiters",
+                  image: floatingSculpture2,
+                  description: "Expert profile optimization to showcase your engineering achievements."
                 },
                 {
                   title: "Industry Connect",
-                  subtitle: "Every connection, considered",
-                  image: heroBg
+                  subtitle: "Every connection, carefully considered",
+                  image: techWorkspace,
+                  description: "Direct access to hiring managers at top engineering companies worldwide."
                 }
               ].map((service, index) => (
                 <ScrollAnimation key={index} direction="up" delay={index * 150}>
-                  <div className="group">
-                    <div className="relative overflow-hidden rounded-2xl mb-6">
+                  <div className="group magnetic-hover">
+                    <div className="relative overflow-hidden rounded-3xl mb-6 image-premium">
                       <img 
                         src={service.image}
                         alt={service.title}
-                        className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105"
+                        className="w-full h-72 object-cover"
                       />
+                      <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 to-transparent" />
                     </div>
-                    <h3 className="text-xl font-semibold text-foreground mb-2">{service.title}</h3>
-                    <p className="text-muted-foreground">{service.subtitle}</p>
+                    <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-accent transition-colors">{service.title}</h3>
+                    <p className="text-sm text-accent mb-3">{service.subtitle}</p>
+                    <p className="text-muted-foreground text-sm">{service.description}</p>
                   </div>
                 </ScrollAnimation>
               ))}
@@ -307,23 +370,38 @@ export default function Index() {
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-32 bg-background">
-          <div className="max-w-5xl mx-auto px-8 text-center">
+        {/* CTA Section - Premium */}
+        <section className="py-32 bg-background relative overflow-hidden">
+          {/* Background Effects */}
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-gradient-radial from-accent/10 to-transparent rounded-full" />
+          </div>
+          
+          <div className="max-w-5xl mx-auto px-8 text-center relative z-10">
             <ScrollAnimation direction="up" delay={100}>
-              <h2 className="text-display text-4xl md:text-5xl lg:text-6xl font-normal text-foreground mb-8">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 mb-8">
+                <Sparkles className="w-4 h-4 text-accent" />
+                <span className="text-sm font-medium text-accent">Ready to Transform Your Career?</span>
+              </div>
+              
+              <h2 className="text-display text-4xl md:text-5xl lg:text-6xl font-normal text-foreground mb-8 leading-tight">
                 Partner with a team that turns
                 <br />
-                engineering talent into powerful
-                <br />
-                career journeys
+                engineering talent into 
+                <span className="text-gradient"> powerful career journeys</span>
               </h2>
               
-              <Button size="lg" className="px-10 py-6 text-base" onClick={() => navigate('/apply')}>
-                Start now
-              </Button>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                <Button size="lg" className="px-12 py-7 text-base magnetic-hover animate-pulse-glow group" onClick={() => navigate('/apply')}>
+                  Start Your Journey
+                  <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
+                </Button>
+                <Button variant="outline" size="lg" className="px-12 py-7 text-base magnetic-hover" onClick={() => scrollToSection('contact')}>
+                  Talk to Us
+                </Button>
+              </div>
               
-              <p className="mt-8 text-muted-foreground max-w-xl mx-auto">
+              <p className="text-muted-foreground max-w-xl mx-auto">
                 Join thousands of engineering professionals who have already connected with global opportunities through Coreica.
               </p>
             </ScrollAnimation>
@@ -351,10 +429,14 @@ export default function Index() {
           </ScrollAnimation>
         </div>
 
-        {/* Footer */}
-        <footer className="py-20 border-t border-border bg-card/50">
-          <div className="max-w-7xl mx-auto px-8">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+        {/* Premium Footer */}
+        <footer className="py-24 border-t border-border bg-card/50 relative overflow-hidden">
+          <div className="absolute inset-0 opacity-3">
+            <img src={patternBg} alt="" className="w-full h-full object-cover" />
+          </div>
+          
+          <div className="max-w-7xl mx-auto px-8 relative z-10">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
               <div className="space-y-6">
                 <div className="logo-container group">
                   <div className="logo-glow" />
@@ -364,56 +446,53 @@ export default function Index() {
                   </span>
                 </div>
                 <p className="text-muted-foreground text-sm leading-relaxed">
-                  Bridging Core Engineering with Global Opportunities.
+                  Bridging Core Engineering with Global Opportunities. Your career transformation starts here.
                 </p>
+                <div className="flex gap-4">
+                  {['Twitter', 'LinkedIn', 'GitHub'].map((social) => (
+                    <div 
+                      key={social}
+                      className="w-10 h-10 rounded-full bg-muted flex items-center justify-center hover:bg-accent/20 transition-colors cursor-pointer magnetic-hover"
+                    >
+                      <span className="text-xs font-medium text-muted-foreground">{social[0]}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
               
               <div>
-                <h4 className="font-semibold text-foreground mb-4">Platform</h4>
-                <ul className="space-y-3">
-                  <li>
-                    <button 
-                      onClick={() => navigate('/apply')}
-                      className="text-muted-foreground hover:text-foreground transition-colors text-sm"
-                    >
-                      Find Jobs
-                    </button>
-                  </li>
-                  <li>
-                    <button 
-                      onClick={() => navigate('/post-job')}
-                      className="text-muted-foreground hover:text-foreground transition-colors text-sm"
-                    >
-                      Post Jobs
-                    </button>
-                  </li>
-                  <li>
-                    <button 
-                      onClick={() => scrollToSection('about')}
-                      className="text-muted-foreground hover:text-foreground transition-colors text-sm"
-                    >
-                      About Us
-                    </button>
-                  </li>
+                <h4 className="font-semibold text-foreground mb-6">Platform</h4>
+                <ul className="space-y-4">
+                  {['Find Jobs', 'Post Jobs', 'About Us', 'Pricing'].map((item) => (
+                    <li key={item}>
+                      <button className="text-muted-foreground hover:text-accent transition-colors text-sm hover-underline">
+                        {item}
+                      </button>
+                    </li>
+                  ))}
                 </ul>
               </div>
               
               <div>
-                <h4 className="font-semibold text-foreground mb-4">Resources</h4>
-                <ul className="space-y-3">
-                  <li><span className="text-muted-foreground text-sm">Career Guide</span></li>
-                  <li><span className="text-muted-foreground text-sm">Interview Tips</span></li>
-                  <li><span className="text-muted-foreground text-sm">Success Stories</span></li>
+                <h4 className="font-semibold text-foreground mb-6">Resources</h4>
+                <ul className="space-y-4">
+                  {['Career Guide', 'Interview Tips', 'Success Stories', 'Blog'].map((item) => (
+                    <li key={item}>
+                      <span className="text-muted-foreground text-sm hover:text-accent transition-colors cursor-pointer hover-underline">
+                        {item}
+                      </span>
+                    </li>
+                  ))}
                 </ul>
               </div>
               
               <div>
-                <h4 className="font-semibold text-foreground mb-4">Account</h4>
-                <ul className="space-y-3">
+                <h4 className="font-semibold text-foreground mb-6">Account</h4>
+                <ul className="space-y-4">
                   <li>
                     <button 
                       onClick={handleAuthAction}
-                      className="text-muted-foreground hover:text-foreground transition-colors text-sm flex items-center gap-2"
+                      className="text-muted-foreground hover:text-accent transition-colors text-sm flex items-center gap-2 hover-underline"
                     >
                       {user ? (
                         <>
@@ -435,24 +514,22 @@ export default function Index() {
                       </span>
                     </li>
                   )}
-                  {(userRole === 'admin' || userRole === 'company') && (
-                    <li>
-                      <button 
-                        onClick={() => navigate('/dashboard')}
-                        className="text-muted-foreground hover:text-foreground transition-colors text-sm"
-                      >
-                        Dashboard
-                      </button>
-                    </li>
-                  )}
                 </ul>
               </div>
             </div>
             
-            <div className="border-t border-border mt-12 pt-8">
-              <p className="text-muted-foreground text-sm text-center">
+            {/* Footer Bottom */}
+            <div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
+              <p className="text-sm text-muted-foreground">
                 © 2024 Coreica. All rights reserved.
               </p>
+              <div className="flex gap-6">
+                {['Privacy Policy', 'Terms of Service', 'Cookie Policy'].map((item) => (
+                  <span key={item} className="text-sm text-muted-foreground hover:text-accent transition-colors cursor-pointer">
+                    {item}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         </footer>

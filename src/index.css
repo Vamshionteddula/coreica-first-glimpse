@@ -526,3 +526,56 @@
   animation: fade-in-up 0.8s ease-out 0.6s forwards;
   opacity: 0;
 }
+
+/* Marquee Animation */
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
+
+/* Glass morphism effect */
+.glass {
+  background: hsl(var(--card) / 0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid hsl(var(--border) / 0.5);
+}
+
+/* Premium image treatment */
+.image-premium {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.5rem;
+}
+
+.image-premium::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 40%, hsl(var(--accent) / 0.1) 100%);
+  pointer-events: none;
+}
+
+.image-premium img {
+  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.image-premium:hover img {
+  transform: scale(1.05);
+}
+
+/* Text shadow for better readability */
+.text-shadow {
+  text-shadow: 0 2px 20px hsl(var(--foreground) / 0.1);
+}
+
+/* Decorative line */
+.decorative-line {
+  width: 60px;
+  height: 2px;
+  background: var(--gradient-accent);
+  border-radius: 2px;
+}
